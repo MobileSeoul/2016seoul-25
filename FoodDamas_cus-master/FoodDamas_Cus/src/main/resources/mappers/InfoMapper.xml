@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.food.mapper.InfoMapper">
+	
+	
+	<select id="readlist" resultType="org.food.domain.InfoVO">
+		select * from tbl_ft_info where u_id=#{u_id}
+	</select>
+	
+	<select id="map" resultType="org.food.domain.SalesVO">
+		select * from tbl_ft_sales where u_id=#{u_id}
+	</select>
+
+</mapper>

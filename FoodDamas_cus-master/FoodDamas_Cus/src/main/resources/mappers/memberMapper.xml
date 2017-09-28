@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.food.persistence.MemberMapper">
+
+	<insert id="insertMember">
+		insert tbl_customer (c_id, c_pw, c_name, c_phone, c_mail) values(#{c_id},#{c_pw},#{c_name},#{c_phone},#{c_mail})
+	</insert>
+	
+	<select id="checkId" resultType="java.lang.String">
+		select c_id from tbl_customer where c_id=#{c_id}
+	</select>
+	
+	<!-- 카카오톡 회원가입 가입유무 -->
+	<select id="checkKakao" resultType="java.lang.String">
+		select k_id from tbl_customer where k_id=#{k_id}
+	</select>
+	
+	<insert id="insertKakaoMember">
+		insert tbl_customer (c_id, c_pw, c_name, c_phone, c_mail, k_id, k_nick, thumb_img, profile_img) 
+		values(#{c_id},#{c_pw},#{c_name},#{c_phone},#{c_mail}, #{k_id}, #{k_nick}, #{thumb_img}, #{profile_img})
+	</insert>
+	
+	<!-- 로그인 -->
+	<select id="login" resultType="MemberVO">
+		  select * from tbl_customer where c_id = #{c_id} and c_pw = #{c_pw}	
+	</select>
+	
+
+	
+	<update id="keepLogin">
+		update tbl_customer set sessionkey=#{sessionId}, sessionlimit=#{next} where
+		c_id=#{c_id}
+	</update>
+	<select id="checkUserWithSessionKey" resultType="MemberVO">
+		select * from tbl_customer where sessionkey=#{value} and sessionlimit > now()
+	</select>	
+	
+	
+	
+
+	
+</mapper>

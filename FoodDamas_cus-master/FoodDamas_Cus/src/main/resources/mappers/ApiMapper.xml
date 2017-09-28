@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.food.mapper.ApiMapper">
+
+	<select id="readlist" resultType="hashmap">
+<!-- 		select (SQRT(pow(lat - #{lat}, 2) + pow(lng - #{lng}, 2)))*10000 as
+		distance, relat, relng, gu, dong, ju, bu from tbl_ft_json_t order by distance
+		limit 0,20
+		 -->
+		
+		select  relat,relng, gu, dong, ju, bu, (SQRT(pow(relat -#{lat} , 2) + pow(relng - #{lng}, 2)))*10000
+ 		as distance from tbl_ft_json_t order by distance limit 0,40;
+		
+	</select>
+
+</mapper>

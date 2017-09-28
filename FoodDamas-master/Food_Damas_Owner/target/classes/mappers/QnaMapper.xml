@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.food.mapper.QnaMapper">
+
+	<select id="read" resultType="QnAVO">
+		select * from tbl_ft_qna where u_id=#{u_id} order by qno desc limit #{qno},10	
+	</select>
+		
+	<select id="readlist" resultType="QnAVO">
+		select * from tbl_ft_qna where u_id=#{u_id} order by qno desc limit 0,10	
+	</select>
+	
+	
+	<select id="pageCount" resultType="java.lang.Integer"> 
+		select count(qno) from tbl_ft_qna where u_id=#{u_id}
+	</select>
+
+	<select id="view" resultType="QnAVO">
+		select * from tbl_ft_qna where qno=#{qno}
+	</select>
+	
+	<select id="readview" resultType="QnAVO">
+		select * from tbl_ft_qna where qno=#{qno} and u_id=#{u_id}
+	</select>
+	
+	
+	<update id="updateAnsCnt">
+		update tbl_ft_qna set anscnt=#{count} where qno=#{qno}
+	</update>
+
+
+
+
+
+</mapper>

@@ -1,0 +1,206 @@
+<div class="container" style="margin-top:1em;">
+
+    <div ng-show="!vm.createNewQuestion">
+        <button class="btn btn-microsoft" ng-click="vm.checkFTLogin()">Make New Question</button>
+        <div id="ViewQnA" ng-show="!vm.viewDetail" style="margin-top: 1em;">
+            <!--Search,Paging Module-->
+            <div class="row">
+
+                <!--  <div  class="col-xs-4 col-md-3 form-group">
+                     <select class="form-control" ng-model="listOrder">
+                         <option value="">Order By...</option>
+                         <option ng-repeat="order in vm.listOrderBy" value="{{order}}">{{order}}</option>
+                     </select>
+                  </div>-->
+
+                <div class="col-xs-7 col-md-5 pull-right">
+                    <div id="custom-search-input">
+                        <div class="input-group">
+                            <input type="text" class="search-query form-control" placeholder="Search Question"
+                                   ng-model="search.$"/>
+                            <span class="input-group-btn">
+                                    <button class="btn btn-danger" type="button">
+                                        <span class=" glyphicon glyphicon-search"></span>
+                                    </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-md-2">
+                    <input type="number" min="1" max="15" class="form-control" ng-model="pageSize">
+                </div>
+            </div>
+            <!--Order By Module-->
+            <div class="row" style="margin-top: 1em;">
+                <div class="col-md-12">
+                    <p>Order By:</p>
+                    <button class="btn btn-facebook" ng-click="vm.orderClick('id')">
+                        Question No.
+                        <span ng-show="vm.orderByField=='q_id'">
+                             <i class="fa fa-sort-desc" aria-hidden="true" ng-show="!vm.reverseSort"></i>
+                             <i class="fa fa-sort-asc" aria-hidden="true" ng-show="vm.reverseSort"></i>
+                        </span>
+
+                    </button>
+                    <button class="btn btn-bitbucket" ng-click="vm.orderClick('title')">
+                        Title
+                        <span ng-show="vm.orderByField=='q_title'">
+                          <i class="fa fa-sort-desc" aria-hidden="true" ng-show="!vm.reverseSort"></i>
+                          <i class="fa fa-sort-asc" aria-hidden="true" ng-show="vm.reverseSort"></i>
+                        </span>
+                    </button>
+                    <button class="btn btn-dropbox" ng-click="vm.orderClick('created')">
+                        Date
+                        <span ng-show="vm.orderByField=='q_created'">
+                            <i class="fa fa-sort-desc" aria-hidden="true" ng-show="!vm.reverseSort"></i>
+                            <i class="fa fa-sort-asc" aria-hidden="true" ng-show="vm.reverseSort"></i>
+                        </span>
+                    </button>
+                    <button class="btn btn-microsoft" ng-click="vm.orderClick('answered')">
+                        <span ng-show="vm.reverseSort && vm.orderByField=='answer'">Not&nbsp;</span>Answered
+                    </button>
+
+                </div>
+            </div>
+            <!-- Get List QnA-->
+            <div style="margin-top: 1em;"
+                 dir-paginate="qna in  vm.lisQnA |toArray |filter:search|orderBy:vm.orderByField:vm.reverseSort | itemsPerPage: pageSize">
+                <!--Question Content-->
+                <div class="panel panel-success" ng-click="vm.viewQnADetail(qna)">
+                    <div class="panel-heading">
+                        <span>
+                            <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+                            No.{{qna.q_id}}
+                        </span>
+                        <span class="pull-right">
+                              <i class="fa fa-clock-o" aria-hidden="true"></i>
+                              <span>{{qna.q_created}}</span>
+                              <i class="fa fa-user" aria-hidden="true"></i>
+                              <span>{{qna.q_userCreated}}</span>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        {{qna.q_title}}
+                    </div>
+                    <div class="panel-footer clearfix">
+                        <span ng-show="qna.answer!=null;">
+                            <span class="pull-left">
+                                <span ng-show="qna.answer.ans_created==qna.answer.ans_edited">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                    <span>Answered at {{qna.answer.ans_created}}</span>
+                                </span>
+                                <span ng-show="qna.answer.ans_created!=qna.answer.ans_edited">
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                    <span>Answered Edit at {{qna.answer.ans_edited}}</span>
+                                </span>
+                             </span>
+                        </span>
+
+                        <span class="pull-right">
+                            <i class="fa fa-comments-o" aria-hidden="true"></i>
+                            <span class="text-success" ng-show="qna.answer==null">Not Answered</span>
+                            <span class="text-success" ng-show="qna.answer!=null">Answered</span>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+            <!--Pagination Part-->
+            <div class="text-center">
+                <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)"
+                                         max-size="5"
+                                         template-url="app/common/dirPagination.tpl.html"></dir-pagination-controls>
+            </div>
+        </div>
+        <div ng-show="vm.viewDetail" id="viewDetail">
+            <button type="button" class="btn btn-instagram" ng-click="vm.viewDetail=false;vm.editAnswer=false;">Back
+            </button>
+            <div id="QnADetailView" style="margin-top: 1em;">
+                <div id="Question" class="panel panel-info">
+                    <div class="panel-heading">
+                        <p>
+                            {{vm.getQnA.q_title}}
+                        </p>
+
+                    </div>
+                    <div class="panel-body">
+                        <p>
+                            {{vm.getQnA.q_content}}
+                        </p>
+                    </div>
+                    <div class="panel-footer clearfix">
+                     <span class="pull-right">
+                         <i class="fa fa-clock-o" aria-hidden="true"></i>
+                         <span>{{vm.getQnA.q_created}}</span>
+                         <i class="fa fa-user" aria-hidden="true"></i>
+                         <span>{{vm.getQnA.q_userCreated}}</span>
+                     </span>
+                    </div>
+                </div>
+                <!--exist answer-->
+                <div ng-show="vm.getQnA.answer!=null">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            Answer
+                            <span class="pull-right">
+                             <i class="fa fa-clock-o" aria-hidden="true"></i>
+                             <span>{{vm.getQnA.answer.ans_created}}</span>
+                             <i class="fa fa-user" aria-hidden="true"></i>
+                             <span>{{vm.getQnA.answer.ans_user}}</span>
+                        </span>
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                                {{vm.getQnA.answer.ans_content}}
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--no exist answer-->
+            <div ng-show="vm.getQnA.answer==null">
+                <div uib-alert ng-class="'alert-'+'warning'">This Question not answered!</div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="vm.createNewQuestion">
+        <button class="btn btn-facebook" ng-click="vm.createNewQuestion=false">Back</button>
+        <div>
+            <form id="createQuestion" novalidate>
+                <div class="form-group">
+                    <label for="questionTitle">Your Title:</label>
+                    <input type="text" class="form-control" id="questionTitle" ng-model="vm.newQuestion.title">
+                </div>
+                <div class="form-group">
+                    <label for="questionInput">Your Question:</label>
+                    <textarea class="form-control" rows="5" id="questionInput" ng-model="vm.newQuestion.questionContent"></textarea>
+                </div>
+                <div>
+                    <button class="btn btn-primary" ng-click="vm.createQuestion()">Submit</button>
+                    <button class="btn btn-warning" ng-click="vm.createNewQuestion=false;vm.newQuestion=null">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+
+    </div>
+</div>
+<script type="text/ng-template" id="modal.html">
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header alert-danger">
+                    <h4 class="modal-title ">Login</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure for delete this answer?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-click="close('Yes')" class="btn btn-danger">Login</button>
+                    <button type="button" ng-click="close('No')" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

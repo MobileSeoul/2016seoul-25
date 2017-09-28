@@ -1,0 +1,23 @@
+[data-toggle="buttons"] > .btn > input[type="radio"],
+[data-toggle="buttons"] > .btn > input[type="checkbox"] {
+    clip: rect(1px 10px 1px 1px);
+}
+.notice_panel_heading{
+    background: lightskyblue;
+    color:#500a6f;
+}
+#addNewNotice input.ng-invalid,
+#addNewNotice textarea.ng-invalid,
+#editNoticeForm input.ng-invalid,
+#editNoticeForm textarea.ng-invalid
+{
+    background-color: lightpink;
+}
+#addNewNotice input.ng-valid,
+#addNewNotice textarea.ng-valid,
+#editNoticeForm input.ng-valid,
+#editNoticeForm textarea.ng-valid
+{
+    background-color: lightgreen;
+}
+

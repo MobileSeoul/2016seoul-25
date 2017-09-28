@@ -1,0 +1,70 @@
+Total View
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Food Trucks Total Sale Manage
+    </h1>
+    <ol class="breadcrumb">
+        <li><a><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Food Trucks Total Sale</li>
+    </ol>
+</section>
+<section class="content">
+    <div style="min-height: 100vh;">
+
+        <div flex-gt-xs>
+            <md-datepicker ng-model="vm.myDate" ng-change="vm.dateClick()"
+                           md-max-date="vm.maxDate"
+                           md-placeholder="Enter date"></md-datepicker>
+        </div>
+        <div ng-show="vm.totalDate ==''" class="text-center">
+                                <span class="text-warning">
+                                    <h1>
+                                     Food Trucks not yet sale on this date!
+                                    </h1>
+                                </span>
+        </div>
+        <div ng-show="vm.totalDate !=''">
+
+            <div class="row" style="padding-top: 2em;">
+                <div class="col-xs-3 col-md-2">
+                    <input type="number" min="1" max="20" class="form-control"
+                           ng-model="totalviewpageSize">
+                </div>
+            </div>
+            <div style="padding-top: 2em;">
+                <table class="table" id="TotalListTable">
+                    <thead class="bg-green-gradient">
+                    <th>No.</th>
+                    <th>Food Truck Name</th>
+                    <th>Owner</th>
+                    <th>Total</th>
+                    <th>Location</th>
+                    </thead>
+                    <tbody>
+                    <tr
+                            dir-paginate="item in vm.totalDate | itemsPerPage: totalviewpageSize">
+                        <td>{{$index +1}}</td>
+                        <td>{{item.u_id}}</td>
+                        <td>{{item.u_name}}</td>
+                        <td>{{item.total}}</td>
+                        <td>{{item.location}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <!-- Data Pagination Part-->
+                <div class="text-center">
+                    <dir-pagination-controls boundary-links="true"
+                                             on-page-change="pageChangeHandler(newPageNumber)"
+                                             max-size="5"
+                                             template-url="app/common/dirPagination.tpl.html"></dir-pagination-controls>
+                </div>
+            </div>
+            <div style="padding-top:2em;margin-left: 0.2em;" class="row">
+                <div id="map" style="width: 81.5vw; height: 600px;"></div>
+            </div>
+        </div>
+
+
+    </div>
+</section>

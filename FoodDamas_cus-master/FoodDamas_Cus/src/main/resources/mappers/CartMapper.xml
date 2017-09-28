@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="org.food.mapper.CartMapper">
+  
+  	<insert id="insertCart">
+  		insert tbl_cart(mno, quantity, c_id) values(#{mno},#{quantity}, #{c_id})
+  	</insert>
+  	<update id="updateCart">
+  		update tbl_cart set check_out=1 where c_id=#{c_id} and check_out=0
+  	</update>
+  	<delete id="deleteCart">
+		delete from tbl_cart where cno=#{cno}
+  	</delete>
+  	<select id="readCart" resultType="CartVO">
+		select  tbl_cart.mno mno, quantity, c_id, tbl_ft_menu.m_name m_name, cno, m_price, check_out, regdate
+		from tbl_cart join tbl_ft_menu
+		on tbl_cart.mno = tbl_ft_menu.mno 
+		where c_id=#{c_id}  and 	check_out=0
+	</select>
+	<update id="updateQuantity">
+		update tbl_cart set quantity=#{quantity} where cno=#{cno}
+	</update>
+  	
+  </mapper >
+  

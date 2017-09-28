@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.food.mapper.QnaMapper">
+	
+	
+	<select id="read" resultType="org.food.domain.QnaVO">
+		select * from tbl_ft_qna where u_id=#{u_id} and c_id=#{c_id}  order by qno desc limit #{qno},10	
+	</select>
+
+	<select id="pageCount" resultType="java.lang.Integer">
+		select count(*) from tbl_ft_qna where u_id=#{u_id}
+	</select>
+	
+	<delete id="deleteqna">
+		delete from tbl_ft_qna where qno=#{qno} and c_id=#{c_id}
+	</delete>
+	
+ 	<insert id="registerqna">
+		insert into tbl_ft_qna (c_id,u_id, q_title, q_content) values (#{c_id},#{u_id},#{q_title},#{q_content})
+	</insert>
+	
+	<select id="updateanscnt">
+		select count(*) from tbl_ft_qna where qno= #{qno}
+	</select>
+		
+	<select id="countAnswer">
+		select count(*) from tbl_ft_ans where qno= #{qno}
+	</select>
+	
+
+
+
+</mapper>

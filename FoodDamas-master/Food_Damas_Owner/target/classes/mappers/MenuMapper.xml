@@ -1,0 +1,42 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.food.mapper.MenuMapper">
+	<!-- David Quang-->
+	<select id="getMenuByOrderDetail" resultType="MenuVO">
+		select *
+		from tbl_ft_menu
+		where mno =#{mno}
+	</select>
+	<!-- ////////// -->
+
+	<insert id="insert">
+		insert into tbl_ft_menu (m_name, m_price, m_info, m_img, u_id)
+		values (#{m_name}, #{m_price}, #{m_info} , #{m_img} ,#{u_id})
+	</insert>
+
+	<select id="select" resultType="MenuVO">
+		select * from tbl_ft_menu where u_id = #{u_id}
+	</select>
+
+  	<update id="update">
+		update tbl_ft_menu set m_name = #{m_name}, m_price = #{m_price},
+		m_info = #{m_info}
+		<if test="m_img!=null">, m_img=</if>
+		<if test="m_img!=null">#{m_img}</if>
+		where mno= #{mno}
+	</update> 
+ 
+	<update id="updateState">
+		update tbl_ft_menu set m_state = #{m_state} where mno = #{mno}
+	</update>
+	
+	<select id="test" resultType="MenuVO">
+		select * from tbl_ft_menu
+	</select>
+	
+	<delete id="delete">
+		delete from tbl_ft_menu where mno= #{mno} and u_id = #{u_id}
+	</delete>
+</mapper>

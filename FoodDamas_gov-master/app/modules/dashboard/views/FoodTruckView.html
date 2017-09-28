@@ -1,0 +1,232 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Food Trucks Manage
+    </h1>
+    <ol class="breadcrumb">
+        <li><a><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Food Trucks View</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div id="listFoodTruckMember" style="padding-top: 1em;" ng-show="!vm.ftDetail">
+        <!--Search With Paging-->
+        <div class="row">
+            <!--Search Input-->
+            <div class="col-xs-7 col-md-5 pull-right">
+                <div id="custom-search-input">
+                    <div class="input-group">
+                        <input type="text" class="search-query form-control" placeholder="Search"
+                               ng-model="ftviewsearch"/>
+                        <span class="input-group-btn">
+                                                 <button class="btn btn-danger" type="button">
+                                                    <span class=" glyphicon glyphicon-search"></span>
+                                                 </button>
+                                            </span>
+                    </div>
+                </div>
+            </div>
+            <!--Paging Number-->
+            <div class="col-xs-3 col-md-2">
+                <input type="number" min="1" max="20" class="form-control"
+                       ng-model="ftviewpageSize">
+            </div>
+        </div>
+        <!--End Search with Paging-->
+        <div style="margin-top: 1em" class="table-responsive">
+
+            <table class="table" id="ftTable">
+                <thead class="bg-light-blue-gradient">
+                <th>No.</th>
+                <th>Food Truck ID</th>
+                <th>Owner</th>
+                <th>Food Type</th>
+                <th>Company</th>
+                <th>Join Date</th>
+                <th>Register</th>
+                </thead>
+                <tbody>
+                <tr
+                        ng-click="vm.rowClick(item)"
+                        dir-paginate="item in vm.listFTFill | filter:ftviewsearch | itemsPerPage: ftviewpageSize">
+                    <td>{{$index+1}}</td>
+                    <td>{{item.u_id}}</td>
+                    <td>{{item.u_name}}</td>
+                    <td>{{item.f_type}}</td>
+                    <td>{{item.co_name}}</td>
+                    <td>{{item.register_Date}}</td>
+                    <td>
+                            <span class="btn btn-sm btn-primary" ng-show="{{item.register=='Registered'}}">
+                             {{item.register}}
+                            </span>
+                        <span class="btn btn-sm btn-danger" ng-show="{{item.register!='Registered'}}">
+                                {{item.register}}
+                            </span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <!-- Data Pagination Part-->
+            <div class="text-center">
+                <dir-pagination-controls boundary-links="true"
+                                         on-page-change="pageChangeHandler(newPageNumber)"
+                                         max-size="5"
+                                         template-url="app/common/dirPagination.tpl.html"></dir-pagination-controls>
+            </div>
+        </div>
+    </div>
+    <div id="showFTDetail" style="padding-top: 1em;" ng-show="vm.ftDetail">
+        <button class="btn btn-md btn-primary" ng-click="vm.ftDetail=false;">Back</button>
+        <div style="padding-top:2em;">
+
+        </div>
+        <script type="text/ng-template" id="group-template.html">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+
+                    <p tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
+                            <span uib-accordion-header ng-class="{'text-muted': isDisabled}">
+                              {{heading}}
+                            </span>
+                    </p>
+
+                </div>
+                <div class="panel-collapse collapse" uib-collapse="!isOpen">
+                    <div class="panel-body" ng-transclude></div>
+                </div>
+            </div>
+        </script>
+
+        <uib-accordion close-others="true">
+            <div uib-accordion-group class="panel-primary" is-open="vm.setOpen">
+                <uib-accordion-heading>
+                    <p>Food Truck Info
+                        <i class="pull-right glyphicon"
+                           ng-class="{'glyphicon-chevron-down':  vm.setOpen, 'glyphicon-chevron-right': !vm.setOpen}">
+                        </i>
+                    </p>
+                </uib-accordion-heading>
+                <div id="InfoContent">
+                    <div class="col-md-6 col-xs-12">
+                        <p>
+                            <label>Food Truck Name:</label>
+                            <span>{{vm.ftInfo.u_id}}</span>
+                        </p>
+                        <p>
+                            <label>Sale Time:</label>
+                            <span>{{vm.ftInfo.sales_time}}</span>
+                        </p>
+                        <p>
+                            <label>Owner:</label>
+                            <span>{{vm.ftInfo.u_name}}</span>
+                        </p>
+                        <p>
+                            <label>Phone:</label>
+                            <span>{{vm.ftInfo.u_phone}}</span>
+                        </p>
+                        <p>
+                            <label>Email:</label>
+                            <span>{{vm.ftInfo.u_email}}</span>
+                        </p>
+                        <p>
+                            <label>Register Date:</label>
+                            <span>{{vm.ftInfo.register_Date}}</span>
+                        </p>
+                    </div>
+                    <div class="col-md-6 col-xs-12">
+                        <p>
+                            <label>Food Type:</label>
+                            <span>{{vm.ftInfo.f_type}}</span>
+                        </p>
+                        <p>
+
+                            <label>Register State</label>
+                            <span class="btn btn-sm btn-primary" ng-click="vm.changeState(vm.ftInfo)" ng-show="vm.ftInfo.register_state">{{vm.ftInfo.register}}</span>
+                            <span class="btn btn-sm btn-danger" ng-click="vm.changeState(vm.ftInfo)" ng-show="!vm.ftInfo.register_state">{{vm.ftInfo.register}}</span>
+                        </p>
+                        <p>
+                            <label>Company:</label>
+                            <span>{{vm.ftInfo.co_name}}</span>
+                        </p>
+                        <p>
+                            <label>Company Number:</label>
+                            <span>{{vm.ftInfo.co_num}}</span>
+                        </p>
+                        <p>
+                            <label>Company Doc:</label>
+                            <span>{{vm.ftInfo.co_doc}}</span>
+                        </p>
+                        <p>
+                            <label>Company Intro</label>
+                            <span>{{vm.ftInfo.co_intro}}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </uib-accordion>
+        <div ng-show="vm.historyResult==''">
+            <div uib-alert ng-class="'alert-'+'warning'">Food Truck did not sale at this moment!</div>
+        </div>
+        <div ng-show="vm.historyResult!=''">
+
+            <div class="panel">
+                <div class="panel-heading  bg-light-blue-active">
+                    History Sales
+                </div>
+                <div class="panel-body">
+                    <div style="width: 10em;margin-bottom: 1em;">
+                        <label>Display :</label>
+                        <input type="number" min="1" max="15" class="form-control" ng-model="locationPaging">
+                    </div>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <th>No.</th>
+                            <th>Location</th>
+                            <th>Work Date</th>
+                        </thead>
+                        <tbody>
+                            <tr
+                                dir-paginate="item in vm.historyResult | itemsPerPage: locationPaging">
+                                <td>{{$index+1}}</td>
+                                <td>{{item.location}}</td>
+                                <td>{{item.work_date}}</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                    <!-- Data Pagination Part-->
+                    <div class="text-center">
+                        <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)"
+                                                 max-size="5"
+                                                 template-url="app/common/dirPagination.tpl.html"></dir-pagination-controls>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="HistoryMap"
+             ng-show="vm.historyResult!=''"
+             style="width: 81.5vw; height: 600px;">
+            Map
+        </div>
+    </div>
+    <!-- The actual modal template, just a bit o bootstrap -->
+    <script type="text/ng-template" id="modal.html">
+        <div class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header alert-danger">
+                        <h4 class="modal-title ">Change Food Truck Register State</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" ng-click="close('Yes')" class="btn btn-danger" data-dismiss="modal">Sure</button>
+                        <button type="button" ng-click="close('No')" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+</section>

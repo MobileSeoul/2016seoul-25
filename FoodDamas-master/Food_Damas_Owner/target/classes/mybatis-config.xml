@@ -1,0 +1,21 @@
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		
+		<typeAlias type="com.food.domain.CustomerVO" alias="CustomerVO"/>
+		<typeAlias type="com.food.domain.MemberVO" alias="MemberVO"/>
+		<typeAlias type="com.food.domain.FoodTypeVO" alias="FoodTypeVO"/>
+		<typeAlias type="com.food.domain.MenuVO" alias="MenuVO"/>
+		<typeAlias type="com.food.domain.OrderDetailVO" alias="OrderDetailVO"/>
+		<typeAlias type="com.food.domain.OrderStateVO" alias="OrderStateVO"/>
+		<typeAlias type="com.food.domain.OrderVO" alias="OrderVO"/>
+		<typeAlias type="com.food.domain.QnAVO" alias="QnAVO"/>
+		<typeAlias type="com.food.domain.AnswerVO" alias="AnswerVO"/>
+		<typeAlias type="com.food.domain.SaleVO" alias="SaleVO"/>
+		<typeAlias type="com.food.domain.EmployeeVO" alias="EmployeeVO"/>
+		
+	</typeAliases> 
+	
+</configuration>

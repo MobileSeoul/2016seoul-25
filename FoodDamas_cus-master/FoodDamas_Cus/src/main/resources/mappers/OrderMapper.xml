@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="org.food.mapper.OrderMapper">
+  
+  	<insert id="insertOrder">
+		insert tbl_ft_order (total_price, 
+		<if test="c_msg!=null">c_msg,</if>
+		<if test="lat!=null">lat,</if>
+		<if test="lng!=null">lng,</if>
+		
+		sno, c_id) value (#{total_price}, 
+		<if test="c_msg!=null">#{c_msg},</if>
+		<if test="lat!=null">#{lat},</if>
+		<if test="lng!=null">#{lng},</if>
+		#{sno}, #{c_id})
+	</insert>
+	<insert id="insertOrderDetail">
+		INSERT INTO tbl_ft_order_detail ( mno, quantity, ono) 
+		SELECT mno, quantity, ono 
+		FROM tbl_cart join tbl_ft_order 
+		on tbl_cart.c_id=tbl_ft_order.c_id
+		where sno=#{sno} and check_out='0' ;
+	</insert>
+	<!-- 
+	  	<update id="update">
+		update tbl_ft_menu set m_name = #{m_name}, m_price = #{m_price},
+		m_info = #{m_info}
+		<if test="m_img!=null">, m_img=</if>
+		<if test="m_img!=null">#{m_img}</if>
+		where mno= #{mno}
+	</update>  -->
+  	<!-- <update id="updateCart">
+  		update tbl_cart set check_out=1 where c_id=#{c_id} and check_out=0
+  	</update>
+  	<delete id="deleteCart">
+		delete from tbl_cart where cno=#{cno}
+  	</delete>
+  	<select id="readCart" resultType="CartVO">
+		select  tbl_cart.mno mno, quantity, c_id, tbl_ft_menu.m_name m_name, cno, m_price, check_out, regdate
+		from tbl_cart join tbl_ft_menu
+		on tbl_cart.mno = tbl_ft_menu.mno 
+		where c_id=#{c_id}  	
+	</select>
+	<update id="updateQuantity">
+		update tbl_cart set quantity=#{quantity} where cno=#{cno}
+	</update>
+  	 -->
+  </mapper >
+  

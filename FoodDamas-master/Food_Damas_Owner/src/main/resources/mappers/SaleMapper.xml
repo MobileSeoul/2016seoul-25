@@ -1,0 +1,52 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.food.mapper.SaleMapper">
+
+
+	<insert id="insert"><!-- when open -->
+		insert tbl_ft_sales ( location, lat, lng, u_id)
+		VALUES(#{location}, #{lat}, #{lng},#{u_id} )
+	</insert>
+	
+	<insert id="insertFake">
+		insert tbl_ft_sales ( location, lat, lng, u_id)
+		VALUES( "현재위치", 0, 0,#{u_id})
+	</insert> 
+
+	<select id="read" resultType="SaleVO">
+		select * from tbl_ft_sales where date(work_date)=date(now()) and
+		u_id=#{u_id}
+	</select>
+	<select id="readOne" resultType="SaleVO">
+		select * from tbl_ft_sales where date(work_date)=date(now()) and
+		u_id=#{u_id}
+	</select>
+	<update id="update"><!-- when store close// off btn -->
+		update tbl_ft_sales set close_time= now() where date(work_date)=date(now())
+		and u_id=#{u_id}
+	</update>
+	<!-- when open , location, lan, lng, open_time-->
+	<!-- 	David Quang -->
+	<update id="updateSale">
+		update tbl_ft_sales set lat=#{lat},lng=#{lng},location=#{address},sales_state=1,open_time=now()
+		where sno =#{sno}
+	</update>
+	<update id="closeTruck">
+		update tbl_ft_sales set sales_state=0,close_time=now()
+		where sno =#{sno}
+	</update>
+	<select id="getLastedInsertByUID" resultType="java.lang.Integer">
+		select sno
+		from tbl_ft_sales
+		where u_id=#{u_id}
+		order by sno desc
+		limit 1;		
+	</select>
+	<select id="getState" resultType="java.lang.Integer">
+		select sales_state
+		from tbl_ft_sales
+		where sno = #{sno}
+	</select>
+</mapper>

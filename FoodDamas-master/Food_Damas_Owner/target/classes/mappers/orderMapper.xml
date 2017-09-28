@@ -1,0 +1,72 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.food.mapper.OrderMapper">
+	<resultMap type="OrderVO" id="OrderResult">
+		<id property="ono" column="ono" />
+		<result property="total_price" column="total_price" />
+		<result property="regdate" column="regdate" />
+		<result property="pickup_time" column="pickup_time" />
+		<result property="c_msg" column="c_msg" />
+		<association property="state" column="state_code"
+			javaType="OrderStateVO" select="com.food.mapper.OrderStateMapper.getOrderStateByID"></association>
+		<association property="listOrderDetail" column="ono"
+			javaType="java.util.List" select="com.food.mapper.OrderDetailMapper.getOrderDetailByOrderID"></association>
+	</resultMap>
+	<select id="getListFinishedOrder" resultMap="OrderResult">
+		select * 
+		from tbl_ft_order
+		where state_code =#{state} and sno=#{sale_id}
+	</select>
+	<select id="getListOrderBySaleID"  resultMap="OrderResult">
+		select *
+		from tbl_ft_order
+		where sno =#{sno} and state_code&lt;16		
+		order by state_code asc
+	</select>
+	<select id="getListOrderBySaleIDWithSearch" parameterType="hashmap" resultMap="OrderResult">
+		<bind name="pattern" value="'%' + _parameter.get('searchString') + '%'" />
+		select *
+		from tbl_ft_order
+		where sno =#{sno} and state_code&lt;16	
+		and c_msg like #{pattern} or c_id like #{pattern}
+		order by state_code asc
+	</select>
+	<select id="getListOrderBySaleIDWithSearchInt"  parameterType="hashmap" resultMap="OrderResult">		
+		select *
+		from tbl_ft_order
+		where sno =#{sno} and state_code&lt;16	
+		and ono = #{searchInt}
+		order by state_code asc
+	</select>
+	<select id="getListOrderByCustID" resultMap="OrderResult">
+		select *
+		from tbl_ft_order
+		where c_id =#{c_id}
+	</select>
+
+	<select id="getOneOrderByOrderID" resultMap="OrderResult">
+		select *
+		from
+		tbl_ft_order
+		where ono =#{ono}
+	</select>
+	<select id="getLastInsertID" resultType="Integer">
+		select LAST_INSERT_ID() as orderID;
+	</select>
+	<insert id="createOrder">
+		insert into tbl_ft_order(total_price,pickup_time,c_msg,sno,c_id,state_code)
+		values(#{total_price},#{pickup_time},#{c_msg},#{sno},#{c_id},#{state_code})
+	</insert>
+	<update id="updateOrder">
+		update tbl_ft_order set total_price=#{total_price},pickup_time=#{pickup_time},c_msg=#{c_msg}
+		where ono =#{ono}
+	</update>
+	<update id="updateState" parameterType="hashmap">
+		update tbl_ft_order set state_code=#{state_code}
+		where ono =#{ono}
+	</update>
+	
+
+</mapper>

@@ -1,0 +1,89 @@
+@charset "UTF-8";
+.sitenavigation ul {
+  margin: 0;
+  padding: 0;
+}
+.sitenavigation li {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  float: left;
+  margin-right: 10px;
+  font-size: 12px;
+  line-height: 20px;
+}
+.sitenavigation li.nav-dropdown:hover > a {
+  background-color: #CCC !important;
+  color: #000;
+}
+.sitenavigation li a {
+  background-color: #ffcb00;
+  color: #FFF;
+  font-family: Arial, san-serif;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  -webkit-tap-highlight-color: transparent;
+  width:100%;
+}
+.sitenavigation li a.nav-path-selected, .sitenavigation li a.linkclicked {
+  color: white;
+  background-color: #ffcb00;
+}
+.sitenavigation li a.nav-selected {
+  background-color: #777;
+  color: #000;
+}
+.sitenavigation li a:hover {
+  background-color: #CCC !important;
+  color: #000;
+}
+.sitenavigation li.clicked > ul {
+  display: block;
+}
+.sitenavigation li ul {
+  display: none;
+  position: absolute;
+ max-width: 48%;
+  padding: 0;
+  margin: 0;
+}
+.sitenavigation li ul a {
+  background-color: #ffcb00;
+}
+.sitenavigation li ul li {
+  float: none;
+  margin: 0;
+}
+.sitenavigation li ul ul {
+  left: 100%;
+  margin-top: -40px;
+}
+.sitenavigation li ul ul a {
+  background-color: #ffcb00;
+}
+.sitenavigation .nav-dropdown:hover > a, .sitenavigation .nav-dropdown.clicked > a {
+  background-color: #ffcb00;
+}
+.sitenavigation .nav-dropdown > a:after {
+  content: '▼' !important;
+  font-size: 10px;
+  float: right;
+  margin-left: 10px;
+  color: #FFF;
+}
+.sitenavigation .nav-dropdown:hover > a:after {
+  content: '▲' !important;
+  font-size: 10px;
+  float: right;
+  margin-left: 10px;
+  color: #FFF;
+}
+
+.no-js .sitenavigation li:hover > ul {
+  display: block !important;
+}
+
+.menu-icon {
+  display: none;
+}

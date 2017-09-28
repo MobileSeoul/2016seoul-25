@@ -1,0 +1,76 @@
+<div>
+<div id="homeView" >
+    <!--Top NavBar-->
+
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <!-- logo -->
+            <div class="navbar-header">
+                <button type="button" id="navbarMenu" class="navbar-toggle" data-toggle="collapse" data-target="#mynavbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" ui-sref="home.homepage">Gov.Food Truck</a>
+            </div>
+            <!-- menu -->
+            <div>
+                <div class="collapse navbar-collapse" id="mynavbar">
+                    <ul class="nav navbar-nav">
+                        <li ui-sref-active="active" ng-click="vm.menuclick()" ng-repeat="menu in vm.menu">
+                            <a ui-sref="home.{{menu.state}}">
+                                <span>{{menu.title}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a ng-hide="checkUserLogin"
+                               ng-click="vm.loginClick()"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+                        </li>
+
+                        <li ng-show="checkUserLogin" class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown"
+                               role="button" aria-haspopup="true" aria-expanded="false">{{checkUserLogin}}<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a ng-click="vm.userLogout()">
+                                        Logout
+                                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                     </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </nav>
+    <!--End Top Navbar-->
+    <div>
+        <div style="min-height: 100vh;">
+                <ui-view></ui-view>
+        </div>
+    </div>
+    <!-- Footer -->
+    <!--<footer class="bg-black-gradient" style="min-height: 10vh;">
+        Copy right
+
+    &lt;!&ndash;    <div class="row">
+           &lt;!&ndash; <hr>&ndash;&gt;
+            <div class="col-md-12 bg-black-gradient"  style="height: 10vh;">
+                <div class="col-md-8 col-xs-12">
+                    <a href="#">Terms of Service</a> | <a href="#">Privacy</a>
+                </div>
+                &lt;!&ndash;<div class="col-md-4 col-xs-12">
+                    <p class="muted pull-right">© 2013 Company Name. All rights reserved</p>
+                </div>&ndash;&gt;
+            </div>
+        </div>&ndash;&gt;
+    </footer>
+-->
+</div>
+</div>

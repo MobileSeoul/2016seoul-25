@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.food.mapper.ReviewMapper">
+
+	<select id="readlist" resultType="org.food.domain.ReviewVO">
+		select * from tbl_ft_review where u_id=#{u_id} order by rno desc limit #{rno},10	
+	</select>
+	
+	<select id="pageCount" resultType="java.lang.Integer"> 
+		select count(rno) from tbl_ft_review where u_id=#{u_id}
+	</select>
+
+	<insert id="registerreview">
+		insert into tbl_ft_review (u_id,c_id,content, grade) values (#{u_id},#{c_id},#{content},#{grade})
+	</insert>
+	
+	<update id="reviewavg">
+		update tbl_ft_info set grade=  (select avg(grade) from tbl_ft_review where c_id=#{c_id}) where u_id=#{u_id}
+	</update>
+	
+</mapper>

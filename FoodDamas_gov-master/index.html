@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Government Food Truck Page</title>
+    <meta name="description" content="Angular Bootstrap Dashboard"/>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <link href="plugins/angular-material/angular-material.min.css" rel="stylesheet" />
+    <!--CSS-->
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <link href="css/site.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <link href="css/nga.all.min.css" rel="stylesheet"/>
+    <link href="css/skin-yellow.min.css" rel="stylesheet"/>
+    <link href="css/AdminLTE.css" rel="stylesheet"/>
+    <link href="css/loginpage.css" rel="stylesheet"/>
+    <link href="css/QnAPage.css" rel="stylesheet"/>
+    <link href="css/NoticePage.css" rel="stylesheet"/>
+    <link href="css/dashboard.css" rel="stylesheet"/>
+    <link href="css/angular-material.css" rel="stylesheet"/>
+ <!--   <link href="css/jquery-ui/jquery-ui.css" rel="stylesheet"/>-->
+<!--
+    &lt;!&ndash;datepicker&ndash;&gt;
+    <link href="plugins/datepicker/datepicker3.css" rel="stylesheet"/>
+-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.43/css/bootstrap-datetimepicker.css" rel="stylesheet"/>
+    <link href="css/ftviewPage.css" rel="stylesheet"/>
+    <link href="css/FoodTruckGovView.css" rel="stylesheet"/>
+    <link href="css/bootstrap-switch.css" rel="stylesheet"/>
+    <link href="css/foodtruckNoticeView.css" rel="stylesheet"/>
+<!--    <link href="css/jquery.dataTables.css" rel="stylesheet"/>
+    <link href="css/angular-datatables.css" rel="stylesheet"/>
+    <link href="css/responsive.dataTables.min.css" rel="stylesheet"/>
+    <link href="css/datatables.bootstrap.min.css" rel="stylesheet"/>-->
+
+    <link href="css/font-awesome.min.css" rel="stylesheet"/>
+</head>
+<body ng-app="app" class="hold-transition sidebar-mini skin-yellow">
+    <!--Script-->
+    <script src="js/jquery/jquery.min.js"></script>
+    <script src="js/jquery/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwNdNHw6hANs92mf7Xd4k5-8mG5fb3Ubo"></script>
+
+    <!--dataTable-->
+   <!-- <script src="js/jquery.dataTables.js"></script>-->
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="plugins/Chart.min.js"></script>
+    <script src="js/jquery.countdownTimer.js"></script>
+    <script src="js/bootstrap-switch.js"></script>
+
+    <!--DatePicker-->
+    <script src="js/moment/moment.js"></script>
+    <script src="js/moment/locale/ko.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+
+    <script src="js/angular/angular.min.js"></script>
+
+    <script src="js/angular/angularModule/angular-animate.min.js"></script>
+    <script src="js/angular/angularModule/angular-ui-router.min.js"></script>
+    <script src="js/angular/angularModule/angular-resource.js"></script>
+    <script src="js/angular/angularModule/angular-cookies.min.js"></script>
+    <script src="js/angular/angular-md5.min.js"></script>
+    <script src="js/angular-material.js"></script>
+    <script src="js/toArrayFilter.js"></script>
+
+    <!--Angular Material Library-->
+    <script src="js/angular/angularModule/angular-material.min.js"></script>
+    <script src="js/angular/angularModule/angular-aria.min.js"></script>
+    <script src="js/angular/angularModule/angular-messages.min.js"></script>
+
+    <script src="js/angular/angularModule/angular-flash.js"></script>
+    <script src="js/angular/angularModule/angular-sanitize.js"></script>
+
+    <script src="js/angular/angularModule/ui-bootstrap-tpls.min.js"></script>
+
+    <script src="js/angular-modal-service.js"></script>
+
+    <!--Common Config-->
+    <script src="app/common/config.js"></script>
+
+    <!--main app-->
+    <script src="app/app.js"></script>
+    <script src="app/common/appCtrl.js"></script>
+    <script src="app/services/apiServices.js"></script>
+
+    <!--Login Module-->
+    <script src="app/modules/login/loginModule.js"></script>
+    <script src="app/modules/login/loginCtrl.js"></script>
+
+    <script src="app/modules/ftview/ftviewModule.js"></script>
+    <script src="app/modules/ftview/ftviewCtrl.js"></script>
+    <script src="app/modules/ftview/module/viewModule.js"></script>
+
+    <script src="app/modules/ftview/controller/homepageViewCtrl.js"></script>
+    <script src="app/modules/ftview/controller/qnaViewCtrl.js"></script>
+    <script src="app/modules/ftview/controller/noticeViewCtrl.js"></script>
+    <script src="app/modules/ftview/controller/foodtruckLoginCtrl.js"></script>
+
+    <script src="app/modules/dashboard/dashboardApp.js"></script>
+    <script src="app/modules/dashboard/dashboardServices.js"></script>
+        <!--DashBoardCtrl-->
+        <script src="app/modules/dashboard/controller/DashBoardCtrl.js"></script>
+        <script src="app/modules/dashboard/controller/NoticeCtrl.js"></script>
+        <script src="app/modules/dashboard/controller/QnACtrl.js"></script>
+        <script src="app/modules/dashboard/controller/FoodTruckViewCtrl.js"></script>
+        <script src="app/modules/dashboard/controller/TotalViewCtrl.js"></script>
+
+
+    <!--pagination-->
+    <script src="js/pagination/dirPagination.js"></script>
+    <ui-view></ui-view>
+</body>
+</html>

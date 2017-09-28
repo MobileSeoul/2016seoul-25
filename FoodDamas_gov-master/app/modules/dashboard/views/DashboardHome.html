@@ -1,0 +1,120 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        DashBoard
+    </h1>
+    <ol class="breadcrumb">
+        <li><a><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">DashBoard</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+
+    <div class="row">
+        <!--Box Info-->
+        <div class="col-lg-3 col-xs-6" ng-repeat="list in vm.listTotalBox">
+            <!--small box-->
+            <div class="small-box {{list.box_bground}}">
+                <div class="inner">
+                    <h3>{{list.box_data}}</h3>
+                    <p>{{list.box_title}}</p>
+                </div>
+                <div class="icon">
+                    <i class="fa {{list.box_icon}}" aria-hidden="true"></i>
+                </div>
+
+            </div>
+        </div>
+        <!--End Box Info-->
+    </div>
+   <!-- <div class="row">
+        <div class='col-sm-3'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' id="datePickerText" class="form-control"/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </div>-->
+    <div class="row">
+
+       <!-- <div class="input-group date col-md-4 col-xs-12">
+            <input id="datepicker" type="text" class="form-control">
+            <div class="input-group-addon">
+                <span class="glyphicon glyphicon-th"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xs-12">
+            <div class="box box-solid bg-green-gradient">
+                <div class="box-header">
+                    <i class="fa fa-calendar"></i>
+                    <h3 class="box-title">Calendar</h3>
+                    <div class="pull-right box-tools">
+                        <button type="button" class="btn btn-warning btn-sm" ng-click="today()">Today
+                        </button>
+                    </div>
+                </div>
+                <div class="box-body no-padding">
+                    <div style="min-height:290px;">
+                         <div uib-datepicker ng-model="DateTimePicker" ng-click="vm.dtClick()" class="well well-sm" datepicker-options="DatePickerOptions"></div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+
+        <div class="col-md-6 col-xs-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title"><i class="fa fa-line-chart" aria-hidden="true"></i>Food Truck Members</h3>
+                    <div class="box-tools pull-right">
+                        <div class="btn-group">
+                            <button class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
+                            <ul class="dropdown-menu pull-right" role="menu">
+                                <li><a data-ng-click="vm.totalMemberByDate();">By Date</a></li>
+                                <li><a data-ng-click="vm.totalMemberByMonth();">By Month</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="chart">
+                        <canvas id="memberChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xs-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title"><i class="fa fa-bar-chart" aria-hidden="true"></i>Q&amp;A</h3>
+                    <div class="box-tools pull-right">
+                        <div class="btn-group">
+                            <button class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i></button>
+                            <ul class="dropdown-menu pull-right" role="menu">
+                                <!--<li><a data-ng-click="vm.totalMemberByDate();">By Date</a></li>-->
+                                <li><a data-ng-click="vm.getCountQnAByMonth();">By Month</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="chart">
+                        <canvas id="qnaChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</section>

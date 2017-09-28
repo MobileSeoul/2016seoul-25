@@ -1,0 +1,76 @@
+<div class="container" id="noticeView" style="margin-top:2em;">
+    <div ng-show="!vm.noticeDetail">
+
+
+        <div class="row">
+            <div class="col-md-4"
+                 ng-click="vm.noticeClick(item)"
+                 dir-paginate="item in vm.noticeResult | itemsPerPage: 9">
+                <div class="panel panel-{{item.type}}" ng-class="{'panel-primary':item.type=='important'}">
+                    <div class="panel-heading">
+                    <span>
+                        <span>
+                             No.{{item.id}}
+                        </span>
+                        <span class="pull-right">
+                            {{item.type|uppercase}}
+                        </span>
+                    </span>
+                    </div>
+                    <div class="panel-body">
+                        {{item.title}}
+                    </div>
+                    <div class="panel-footer clearfix">
+                    <span class="pull-right">
+                         <span ng-show="item.date==item.edited">
+                             <i class="fa fa-clock-o" aria-hidden="true"></i>
+                             <span>Create at {{item.date}}</span>
+                         </span>
+                         <span ng-show="item.date!=item.edited">
+                             <i class="fa fa-clock-o" aria-hidden="true"></i>
+                             <span>Edit at {{item.edited}}</span>
+                         </span>
+                    </span>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="text-center">
+            <dir-pagination-controls boundary-links="true"
+                                     on-page-change="pageChangeHandler(newPageNumber)"
+                                     max-size="5"
+                                     template-url="app/common/dirPagination.tpl.html"></dir-pagination-controls>
+        </div>
+    </div>
+    <div ng-show="vm.noticeDetail">
+        <button class="btn btn-primary" ng-click="vm.noticeDetail=!vm.noticeDetail">Back</button>
+        <div class="panel panel-{{vm.detailResult.type}}"  ng-class="{'panel-primary':vm.detailResult.type=='important'}" style="margin-top:1em;">
+            <div class="panel-heading">
+                    <span>
+                        {{vm.detailResult.title|uppercase}}
+                    </span>
+                    <span class="pull-right">
+                        {{vm.detailResult.type|uppercase}}
+                    </span>
+
+            </div>
+            <div class="panel-body">
+                {{vm.detailResult.content}}
+            </div>
+            <div class="panel-footer clearfix">
+                 <span class="pull-right">
+                         <span ng-show="vm.detailResult.date==vm.detailResult.edited">
+                             <i class="fa fa-clock-o" aria-hidden="true"></i>
+                             <span>Create at {{vm.detailResult.date}}</span>
+                         </span>
+                         <span ng-show="vm.detailResult.date!=vm.detailResult.edited">
+                             <i class="fa fa-clock-o" aria-hidden="true"></i>
+                             <span>Edit at {{vm.detailResult.edited}}</span>
+                         </span>
+                    </span>
+            </div>
+        </div>
+    </div>
+</div>

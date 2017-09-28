@@ -1,0 +1,43 @@
+<div class="container">
+    <div id="loginForm" ng-show="!vm.checkLogin">
+        <div class="col-sm-10 col-md-10 col-md-offset-1">
+            <!--   <div class="modal-content">-->
+            <div class="modal-header">
+                <h1 class="text-center login-title">Login</h1>
+            </div>
+            <div class="modal-body" style="background: white;">
+                <img class="profile-img"
+                     ng-src="./images/ftLoginImage.jpg" alt="">
+                <form name="myForm" class="form-signin" novalidate
+                      ng-submit="vm.checkFT()">
+                    <!--username-->
+                    <div class="alert alert-danger" role="alert" ng-show="vm.errorMsg">{{vm.errorMsg}}</div>
+                    <div class="alert alert-info" role="alert" ng-show="vm.successMsg">{{vm.successMsg}}</div>
+                    <input type="text"
+                           name="username"  ng-pattern="/^[0-9a-zA-Z]+$/"
+                           ng-model="vm.getUser.Username"
+                           autocomplete="off"
+                           class="form-control" placeholder="Username" required autofocus>
+                    <p ng-show="myForm.username.$error.required" class="help-block error">Username is required.</p>
+                    <p ng-show="myForm.username.$error.pattern" class="help-block error">Username must content char and number.</p>
+                    <!--password-->
+                    <input type="password" class="form-control" placeholder="Password"
+                           name="password"
+                           ng-model="vm.getUser.Password"
+                           required>
+                    <p ng-show="myForm.password.$error.required" class="help-block error">Password is required.</p>
+
+
+                    <button class="btn btn-lg btn-primary btn-block" type="submit"
+
+                            ng-disabled="!myForm.$dirty || (myForm.$dirty && myForm.$invalid)">
+                        Sign in <i class="fa fa-sign-in"></i></button>
+
+
+                </form>
+
+            </div>
+            <!--</div>-->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.food.mapper.OrderListMapper">
+
+	<select id="readlist" resultType="org.food.domain.OrderListVO">
+		select ono, total_price,
+		regdate, pickup_time, c_msg, s.sno, c_id, o.state_code, reviewstate,
+		o.lng, o.lat, s.u_id, i.co_name, os.state_name
+		from tbl_ft_order o
+		left join tbl_ft_sales s
+		on o.sno=s.sno
+		left join tbl_ft_info i
+		on s.u_id=i.u_id
+		left join tbl_order_state os
+		on o.state_code=os.state_code
+		where c_id=#{c_id}
+		order by ono desc;
+	</select>
+
+	<select id="pageCount" resultType="java.lang.Integer">
+		select count(*) from tbl_ft_order where c_id=#{c_id}
+	</select>
+
+</mapper>
+  

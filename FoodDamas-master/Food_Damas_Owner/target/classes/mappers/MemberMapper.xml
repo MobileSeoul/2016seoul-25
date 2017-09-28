@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.food.persistences.MemberMapper">
+	
+	
+	<insert id="insert">
+	insert into tbl_ft_info(u_id, u_pw, u_name, u_email, u_phone, co_name, co_num, co_doc, u_profile_img, f_code)
+		values(#{u_id}, #{u_pw}, #{u_name}, #{u_email}, #{u_phone}, #{co_name}, #{co_num}, #{co_doc}, #{u_profile_img},#{f_code})
+	</insert>
+
+	<select id="view" resultType="com.food.domain.MemberVO">
+		select * from tbl_ft_info where u_id=#{u_id}
+	</select>
+	
+	<select id="idcheck" resultType="java.lang.String">
+		select u_id from tbl_ft_info where u_id = #{u_id}
+	</select>
+	
+	
+	<update id="update">
+		update tbl_ft_info set u_pw=#{u_pw} ,u_name=#{u_name} , u_email=#{u_email}, u_phone=#{u_phone},
+		co_name=#{co_name},co_intro = #{co_intro}, sales_time=#{sales_time}, f_code = #{f_code}
+		<if test="u_profile_img!=null">, u_profile_img=</if>
+		<if test="u_profile_img!=null">#{u_profile_img}</if>
+		where u_id = #{u_id}	
+	</update>
+	
+	<delete id="delete">
+		delete from tbl_ft_info where u_id = #{u_id}
+	</delete>
+	
+	
+	<!-- 승인대기자 리스트 -->
+	<select id="listState" resultType="com.food.domain.MemberVO">
+		select * from tbl_ft_info where register_state=0;
+	</select>
+	
+	
+	<!-- 페이지 메이커 -->
+	<select id="pageCount" resultType="java.lang.Integer">
+		select count(*) from tbl_ft_info
+	</select>
+	
+	
+	
+	<!--로그인!Leeek-->
+	<select id="login" resultType="com.food.domain.MemberVO">
+		select u_id, u_pw, u_name from tbl_ft_info where u_id=#{u_id} and u_pw=#{u_pw}
+	</select>
+	
+	<update id="keepLogin">
+		update tbl_ft_info set sessionKey=#{sessionId}, sessionLimit=#{next} where
+		u_id=#{u_id}
+	</update>
+	<select id="checkUserWithSessionKey" resultType="com.food.domain.MemberVO">
+		select * from tbl_ft_info where sessionKey=#{value} and sessionlimit > now()
+	</select>	
+<!-- 	
+
+	<select id="listAll" resultType="com.mercier.domain.QABoardVO">
+		select * from tbl_qaboard order by qno
+		desc limit #{qno},10
+	</select>
+	조회수 카운트
+	<update id="viewPoint">
+		update tbl_qaboard set viewpoint=#{viewpoint} where qno=#{qno}
+	</update> -->
+
+
+</mapper>

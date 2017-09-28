@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+encoding//src/main/java/org/food/controller/HomeController.java=UTF-8
+encoding//src/main/java/org/food/controller/MemberController.java=UTF-8
+encoding//src/main/java/org/food/controller/OrderListController.java=UTF-8
+encoding//src/main/webapp/WEB-INF/views/header.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/qna.jsp=UTF-8
+encoding//src/main/webapp/resources/css/app.css=UTF-8
+encoding//src/main/webapp/resources/css/bootstrap.min.css=UTF-8
+encoding//src/main/webapp/resources/css/fooddamas.css=UTF-8
+encoding//src/test/resources/org/food/controller/MariaDBConnectionTest.java=UTF-8
+encoding/<project>=UTF-8

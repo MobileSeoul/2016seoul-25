@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.food.mapper.OrderDetailMapper">
+
+	<select id="readDetail" resultType="org.food.domain.OrderDetailVO">
+		select odno, quantity, m.mno mno, o.ono ono , m.m_name m_name,  m.m_price m_price from
+		tbl_ft_order_detail od join tbl_ft_order o
+		on od.ono=o.ono
+		join tbl_ft_menu m
+		on m.mno= od.mno
+		where o.ono=#{ono} ;
+	</select>
+
+
+</mapper>
+  

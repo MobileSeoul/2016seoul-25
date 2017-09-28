@@ -1,0 +1,84 @@
+<div id="loginSuccess" class="container" ng-show="vm.checkLogin">
+    <div class="panel panel-success" style="margin-top: 8em;">
+        <div class="panel-heading text-center" >
+            <h3>Login Success</h3>
+        </div>
+        <div class="panel-body text-center">
+            <h4>
+                Welcome back, {{vm.getUser.Username}}
+                , Redirect to main page in <span id="countdown"></span>
+            </h4>
+            <div class="progress" style="border-radius: 24px; height: 25px;">
+                <div class="progress-bar progress-bar-success progress-bar-striped active" id="progress-bar" role="progressbar"
+                     aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer clearfix">
+            <div class="pull-right">
+                <h5>
+                    <p  class="btn btn-block text-danger" ng-click="vm.change()">
+                        <ins> Redirect directly to main page</ins>
+                    </p>
+                </h5>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--<div class="modal show" id="myModal" role="dialog">
+    <div class="modal-dialog">-->
+    <div id="loginForm" ng-show="!vm.checkLogin">
+        <div class="col-sm-10 col-md-10 col-md-offset-1">
+         <!--   <div class="modal-content">-->
+                <div class="modal-header">
+                    <h1 class="text-center login-title">{{vm.loginHeader}}</h1>
+                </div>
+                <div class="modal-body" style="background: white;">
+                    <img class="profile-img"
+                         ng-src="./images/seoul_icon.jpg" alt="">
+                    <form name="myForm" class="form-signin" novalidate
+                        ng-submit="vm.login(vm.getUser);">
+                        <!--username-->
+                        <div class="alert alert-danger" role="alert" ng-show="vm.errorMsg">{{vm.errorMsg}}</div>
+                        <div class="alert alert-info" role="alert" ng-show="vm.successMsg">{{vm.successMsg}}</div>
+                        <input type="text"
+                               name="username" ng-minlength="5" ng-maxlength="15" ng-pattern="/^[0-9a-zA-Z]+$/"
+                               ng-model="vm.getUser.Username"
+                               autocomplete="off"
+                               class="form-control" placeholder="Username" required autofocus>
+                        <p ng-show="myForm.username.$error.required" class="help-block error">Username is required.</p>
+                        <p ng-show="myForm.username.$error.minlength" class="help-block error">Username min length is 5 characters.</p>
+                        <p ng-show="myForm.username.$error.maxlength" class="help-block error">Username max length is 15 characters.</p>
+                        <p ng-show="myForm.username.$error.pattern" class="help-block error">Username must content char and number.</p>
+                        <!--password-->
+                        <input type="password" class="form-control" placeholder="Password"
+                               name="password" ng-minlength="5" ng-maxlength="15"
+                               ng-model="vm.getUser.Password"
+                               required>
+                        <p ng-show="myForm.password.$error.required" class="help-block error">Password is required.</p>
+                        <p ng-show="myForm.password.$error.minlength" class="help-block error">Password min length is 5 characters.</p>
+                        <p ng-show="myForm.password.$error.maxlength" class="help-block error">Password max length is 15 characters.</p>
+
+                        <button class="btn btn-lg btn-primary btn-block" type="submit"
+                                ng-disabled="!myForm.$dirty || (myForm.$dirty && myForm.$invalid)"
+
+                        >
+                            Sign in <i class="fa fa-sign-in"></i></button>
+                        <label class="checkbox pull-left" style="margin-left: 1.5em;" >
+                            <input type="checkbox" value="remember-me" ng-model="rememberMe">
+                            Remember me
+                        </label>
+                        <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
+                    </form>
+                    <a href="#" class="text-center new-account">Create an account </a>
+                </div>
+            <!--</div>-->
+        </div>
+    </div>
+<!--
+    </div>
+</div>-->

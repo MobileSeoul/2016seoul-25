@@ -1,0 +1,172 @@
+
+header {
+  float: left;
+  display: block;
+   position: fixed;
+  z-index: 1;
+  margin-right: 2.35765%;
+  width: 100%; }
+  header:last-child {
+    margin-right: 0; }
+  header nav {
+    text-align: center; }
+header nav ul{ list-style-type: none;
+    padding: 0;
+  margin-top:30px;
+  clear:both;
+}
+header nav li {
+      padding: 1em 0;
+      border-bottom: 1px solid #f6d061;
+      color: #000;
+      font-size: 1rem;
+}
+header .navigatie{
+  height: 6rem;
+  background-color: #fbc118;
+}
+header nav li:hover{
+  background:#fbc118;
+  color: #000;
+  border-top: 2px solid #000;
+}
+header nav li a {
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-weight: bold;
+        cursor:pointer;
+
+ }
+header nav li i{
+  float: right;
+  padding-right: 3rem;
+}
+.menu {
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  color: #000;
+}
+
+#side-menu {
+  border-top: 5px solid #f6d061;
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
+  position: absolute;
+  height: 100%;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  background: white;
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  transition: all 0.4s;
+  width: 80%;
+  height: 100vh;
+  -webkit-transform: translateX(-100%);
+  -moz-transform: translateX(-100%);
+  -ms-transform: translateX(-100%);
+  -o-transform: translateX(-100%);
+  transform: translateX(-100%); }
+  
+  #side-menu li{ text-align: left; padding-left: 20px }
+#side-menu p{
+  float: left;
+  padding-left: 1.5rem;
+  padding-bottom: 1rem;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.sideMenuToggle {
+  -webkit-transform: translateX(0) !important;
+  -moz-transform: translateX(0) !important;
+  -ms-transform: translateX(0) !important;
+  -o-transform: translateX(0) !important;
+  transform: translateX(0) !important; }
+#close{
+  float: right;
+  margin: 7px 18px;
+  color: #000;
+}
+
+
+
+
+
+/** grid **/
+* {
+	box-sizing: border-box;
+}
+
+
+/* 
+	Gridsysteem
+	Responsive Mobile First gridsysteem
+*/
+
+/*
+	Wrapper
+*/
+.grid__wrapper {
+	display: block;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+/*
+	Container
+*/
+.grid__container {
+	display: block;
+	max-width: 71.25rem;
+	margin: 0 auto;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	zoom: 1;
+}
+.grid__container::before, .grid__container::after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden; 
+}
+.grid__container::after {
+	clear: both; 
+}
+
+/*
+	Row
+*/
+.grid__row {
+	display: block;
+	margin-left: -0.5rem;
+	margin-right: -0.5rem;
+	zoom: 1; 
+}
+.grid__row::before, .grid__row::after {
+	content: "\0020";
+	display: block;
+	height: 0;
+	overflow: hidden; 
+}
+.grid__row::after {
+	clear: both; 
+}
+
+
+/*
+	Column
+*/
+.grid__column, .grid__column-bp1-1, .grid__column-bp1-2, .grid__column-bp1-3, .grid__column-bp1-4, .grid__column-bp1-5, .grid__column-bp1-6, .grid__column-bp1-7, .grid__column-bp1-8, .grid__column-bp1-9, .grid__column-bp1-10, .grid__column-bp1-11, .grid__column-bp1-12, .grid__column-bp2-1, .grid__column-bp2-2, .grid__column-bp2-3, .grid__column-bp2-4, .grid__column-bp2-5, .grid__column-bp2-6, .grid__column-bp2-7, .grid__column-bp2-8, .grid__column-bp2-9, .grid__column-bp2-10, .grid__column-bp2-11, .grid__column-bp2-12, .grid__column-bp3-1, .grid__column-bp3-2, .grid__column-bp3-3, .grid__column-bp3-4, .grid__column-bp3-5, .grid__column-bp3-6, .grid__column-bp3-7, .grid__column-bp3-8, .grid__column-bp3-9, .grid__column-bp3-10, .grid__column-bp3-11, .grid__column-bp3-12, .grid__column-bp4-1, .grid__column-bp4-2, .grid__column-bp4-3, .grid__column-bp4-4, .grid__column-bp4-5, .grid__column-bp4-6, .grid__column-bp4-7, .grid__column-bp4-8, .grid__column-bp4-9, .grid__column-bp4-10, .grid__column-bp4-11, .grid__column-bp4-12, .grid__column-bp5-1, .grid__column-bp5-2, .grid__column-bp5-3, .grid__column-bp5-4, .grid__column-bp5-5, .grid__column-bp5-6, .grid__column-bp5-7, .grid__column-bp5-8, .grid__column-bp5-9, .grid__column-bp5-10, .grid__column-bp5-11, .grid__column-bp5-12 {
+	display: block;
+	position: relative;
+	float: left;
+	width: 100%;
+	min-height: 1px;
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+	margin-bottom: 1rem;
+	overflow: hidden; 
+}
+

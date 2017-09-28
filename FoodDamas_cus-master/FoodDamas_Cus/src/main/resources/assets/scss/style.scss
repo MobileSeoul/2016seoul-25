@@ -1,0 +1,379 @@
+@import "compass/css3";
+
+$phones: "only screen and (max-width : 420px)";
+
+// turn on indicators on drop down menu (non-mobile)
+$showindicators: true;
+
+// ### DROP DOWN STYLES ###
+
+// width of drop down menus
+$sub-min-width: 200px;
+$sub-max-width: 300px;
+
+$font-size: 12px;
+$line-height: 20px;
+$padding: 10px;
+
+// horizontal space between nav items at top level
+$drop-nav-spacing: 10px;
+
+$drop-item-text-color: #FFF;
+$drop-item-back-color: #a91e2f;
+$drop-item-font: Arial, san-serif;
+
+$drop-item-text-hover-color: #000;
+$drop-item-back-hover-color: #CCC;
+
+$drop-item-text-color-selected: #000;
+$drop-item-back-color-selected: #777;
+
+$drop-indicators-color: #FFF;
+$drop-indicators-size: 12px;
+
+
+// ### MOBILE NAVIGATION STYLES ###
+
+// veticale gap between expanded mobile menu and top of browser
+$mobile-heading-gap: 80px;
+
+$mobile-font-size: $font-size;
+$mobile-item-font: $drop-item-font;
+$mobile-line-height: $line-height;
+
+// size allocated for tap area to trigger sub menus
+$mobile-sub-width: 20%;
+
+$mobile-indicators-color: #000;
+$mobile-indicators-back-color: #FFF; 
+
+//mobile button 
+$button-markers: #FFF;
+$button-back: #AAA;
+ 
+// ### DROP DOWN ### 
+.sitenavigation {
+  ul {
+   margin: 0;
+    padding: 0;
+  }
+  
+  li {
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+		float: left;
+		margin-right: $drop-nav-spacing; // spacing between nav items
+		font-size: $font-size;
+    
+		line-height: $line-height;
+		 
+		// how items with sub-menus appear when showing subs, most likely same as normal hover
+		&.nav-dropdown:hover > a {
+			background-color: $drop-item-back-hover-color !important;
+			color: $drop-item-text-hover-color;
+		}
+		 
+		// top level items
+		a {
+			background-color: $drop-item-back-color;
+			color: $drop-item-text-color;
+      font-family: $drop-item-font;
+			text-decoration: none;
+			display: block; 
+			padding: $padding;
+			-webkit-tap-highlight-color: transparent;
+			
+      // nav-path-selected and nav-selected are classes to indicate current site location
+			&.nav-path-selected, &.linkclicked {
+				color: white;
+				background-color: $drop-item-back-color;	
+			}
+			
+			&.nav-selected {
+				background-color: $drop-item-back-color-selected;
+				color: $drop-item-text-color-selected;
+			}
+			
+			&:hover {
+				background-color: $drop-item-back-hover-color !important;
+				color: $drop-item-text-hover-color;
+			}
+		}
+		
+		&.clicked > ul {  // used for JS/touch trigger
+			display: block; 
+		}
+		
+		// second level drop downs
+		ul {
+			display: none;	
+			position: absolute;	 
+			min-width: $sub-min-width;
+			max-width: $sub-max-width;
+			padding: 0;
+			margin: 0;
+			
+			a {
+				background-color: darken($drop-item-back-color, 5%);
+			}
+			
+			li {
+				float: none;	
+				margin: 0;
+			}
+			
+			// third level drop downs, expand to the right
+			ul {
+				left: 100%;
+				margin-top: -($line-height + 2*$padding);
+				
+				a {
+					background-color: darken($drop-item-back-color, 10%);
+				}
+			}
+		}
+			 
+	}
+	
+	.nav-dropdown:hover > a, .nav-dropdown.clicked > a	 {
+		background-color: $drop-item-back-color;
+	}
+	
+	 @if $showindicators {
+		.nav-dropdown > a:after {
+			content: '▼' !important;
+			font-size: 10px;
+			float: right;
+			margin-left: 10px;
+			color: $drop-indicators-color;
+		}
+		
+		.nav-dropdown:hover > a:after {
+			content: '▲' !important;
+			font-size: 10px;	
+			float: right;
+			margin-left: 10px;
+			color: $drop-indicators-color;
+		}
+	 }
+}
+ 
+// non javascript expand of menu on hover (fallback)
+.no-js .sitenavigation {
+	li {
+		&:hover > ul {
+			display: block !important;	
+		}
+	}
+}
+
+
+// default of mobile menu button, needed for javascript to detect if visible
+.menu-icon {
+	display: none;	
+}
+
+
+// ### MOBILE NAV AND MENU BUTTON ### 
+@media #{$phones} {
+	  .menu-icon {
+		width:	30px;
+		height: 25px;
+		padding-top:  0;
+		margin-top: 10px;
+		display: block;
+		float: right;
+		-webkit-tap-highlight-color: rgba(0,0,0,0);
+		background-color: $button-back;
+		padding: 5px;
+		padding-top: 1px;
+		padding-bottom: 12px;
+		border: solid 2px darken($button-back, 5%);
+		margin-bottom: 10px;
+
+		span {
+			display: block;
+			height: 5px;
+			background-color: $button-markers;
+			margin-top:	 5px;
+			border-radius: 4px;		
+		}
+		
+	} 
+	
+	.sitenavigation.is-tapped .menu-icon {
+		background-color: darken($button-back, 20%);
+		-webkit-tap-highlight-color: rgba(0,0,0,0);
+		
+		span {
+			background-color: darken(#FFF,30%);
+		}
+	}
+	
+	.sitenavigation ul {
+		display: none;
+		max-width: none !important;
+	}
+	
+	.sitenavigation li {
+		float:	none;
+		display: block;
+		margin: 0;
+		padding: 0;
+	}
+	
+	
+	.sitenavigation.is-tapped  > ul {
+		display:  block;
+		position: absolute;
+		margin: 0;
+		background-color: $mobile-indicators-back-color;
+		right: 0;
+		left: 0;
+		top: $mobile-heading-gap;
+		z-index: 100;
+		padding: 0;
+		
+		a {
+			@include box-sizing(border-box);
+			width: 100%;
+			margin: 0;
+			background-color: $drop-item-back-color;
+			display: block;
+			padding-top: $padding;
+			padding-bottom: $padding;
+			padding-left: 20px;
+			padding-right: 20px;
+			height: auto;
+			color: $drop-item-text-color;
+			float: none;
+			font-size: $mobile-font-size;
+			line-height: $mobile-line-height;
+      font-family: $mobile-item-font;
+			
+			border: none !important;
+			-webkit-font-smoothing: antialiased;
+			-webkit-tap-highlight-color: transparent;
+			
+			&:hover {
+				background-color: $drop-item-text-hover-color;
+			}	
+			
+		}
+		
+		li {
+			width: 100%;
+			background-color: $mobile-indicators-back-color;
+			border-bottom: solid 1px darken($drop-item-back-color, 20%);
+			-webkit-tap-highlight-color: transparent;
+			
+			li {
+				background-color: darken($mobile-indicators-back-color, 20%);	
+			}
+		}
+		
+		
+		
+		ul {
+			display: none;
+			width: 100%; 
+			z-index: 200;
+			border: none;
+			margin-left: 0;
+			padding: 0;
+			position: relative !important;
+			 
+			ul {
+				clear: both;
+				left: 0;
+				margin-top: 0; 
+			} 
+			
+			li {
+				border-bottom: solid 1px darken($drop-item-back-color, 5%);
+				
+				li a {
+					background-color: darken($drop-item-back-color, 30%);
+					padding-left: 30px;
+				}
+			}
+			
+			a {
+				background-color: darken($drop-item-back-color, 10%);
+				font-size: 90%;
+				padding-left: 20px;
+				
+				&:before {
+					content: '↳';
+					display: inline-block;
+					margin-right: 4px;
+					color: $mobile-indicators-color;
+					font-family: Arial;
+				}
+			}
+			
+		}
+		
+		
+		// create space for indicator	
+		li.nav-dropdown {
+			cursor: pointer;
+			
+			&>a {
+				width: 100% - $mobile-sub-width;
+			}
+			 
+		}
+		
+		
+		li.nav-dropdown:after {
+			content: '▼';
+			position: absolute;
+			color: $mobile-indicators-color;
+			padding: 0;
+			display: block;
+			width: $mobile-sub-width;
+			right: 0;
+			margin-top: -($line-height + 2*$padding);
+			text-align: center;
+			font-size: $drop-indicators-size;
+			padding-top: $padding;
+			padding-bottom: $padding;
+			@include box-sizing(border-box);
+		}
+		
+		li.expanded:after {
+			display: none;
+		}
+		
+		li.expanded li:first-child:before {
+			content: '▲' !important;
+			position: absolute;
+			color: darken($mobile-indicators-color, 20%);
+			padding: 0;
+			display: block;
+			width: $mobile-sub-width;
+			right: 0;
+			margin-top: -($line-height + 2 *$padding);
+			text-align: center;
+			font-size: $drop-indicators-size;
+			padding-top: $padding;
+			padding-bottom: $padding;
+			@include box-sizing(border-box);
+			  
+		}
+	
+		 @if $showindicators {
+			// remove unnecessary indicators on mobiles
+			.nav-dropdown > a:after {
+				content: '' !important;
+			}
+			
+			.nav-dropdown:hover > a:after {
+				content: '' !important;
+			}  
+		}
+		
+	}
+}

@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+encoding//src/main/webapp/WEB-INF/views/home.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/order.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/register.jsp=UTF-8
+encoding//src/test/java/com/project/foodDamas/TestMariaDBConnect.java=UTF-8
+encoding/<project>=UTF-8

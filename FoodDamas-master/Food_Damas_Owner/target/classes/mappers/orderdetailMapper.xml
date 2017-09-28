@@ -1,0 +1,36 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.food.mapper.OrderDetailMapper">
+	<resultMap type="OrderDetailVO" id="OrderDetailResult">
+		<id property="odno" column="odno"/>
+		<result property="quantity" column="quantity"/>
+		<association property="menu" javaType="MenuVO"
+		column="mno" select="com.food.mapper.MenuMapper.getMenuByOrderDetail"></association>
+	</resultMap>
+	
+	<select id="getOrderDetailByOrderID" resultMap="OrderDetailResult">
+		select *
+		from tbl_ft_order_detail
+		where ono =#{ono}		
+	</select>
+	<insert id="addOrderDetail">
+		insert into tbl_ft_order_detail(quantity,mno,ono)
+		values(#{quantity},#{mno},#{ono})
+	</insert>
+	<update id="updateOrderDetail">
+		update tbl_ft_order_detail set quantity=#{quantity},mno=#{mno}
+		where odno =#{odno}
+	</update>
+	<delete id="deleteOrderDetailByDetailID">
+		delete
+		from tbl_ft_order_detail
+		where odno =#{odno}
+	</delete>
+	<delete id="deleteOrderDetailByOrderID">
+		delete
+		from tbl_ft_order_detail
+		where ono=#{ono}
+	</delete>
+</mapper>
